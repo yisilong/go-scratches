@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// 整数反转
 func reverse(x int) int {
 	const SENTRY = (1 << 31) / 10
 	var result int

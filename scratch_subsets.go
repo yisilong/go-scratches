@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// 子集
 func subsets(nums []int) [][]int {
 	length := len(nums)
 	if length == 0 {

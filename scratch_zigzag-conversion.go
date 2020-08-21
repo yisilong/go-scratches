@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// Z 字形变换
 func convert(s string, numRows int) string {
 	length := len(s)
 	if numRows <= 1 {

@@ -4,6 +4,7 @@ import (
     "fmt"
 )
 
+// 寻找两个正序数组的中位数
 const IntMax = int(^uint(0) >> 1)
 const IntMin = ^IntMax
 
