@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"leetcode/helper"
+)
 
 // 子集
 func subsets(nums []int) [][]int {
@@ -21,14 +24,15 @@ func subsets(nums []int) [][]int {
 	return result
 }
 
-func Print(nums []int) {
+func testSubsets(in string) {
+	nums := helper.ParseArray(in)
 	fmt.Printf("%v  =>  %v\n", nums, subsets(nums))
 }
 
 func main() {
-	Print(nil)
-	Print([]int{1})
-	Print([]int{1, 3})
-	Print([]int{1, 3, 5})
-	Print([]int{1, 3, 5, 9})
+	testSubsets("[]")
+	testSubsets("[1]")
+	testSubsets("[1,3]")
+	testSubsets("[1,3,5]")
+	testSubsets("[1,3,5,9]")
 }

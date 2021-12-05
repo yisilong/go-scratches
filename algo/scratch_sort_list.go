@@ -1,13 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"leetcode/helper"
 )
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
 
 func sortList(head *ListNode) *ListNode {
 	var length int
@@ -87,25 +82,12 @@ func sortList2(head *ListNode) *ListNode {
 	return head.Next
 }
 
-func makeList(arr []int) *ListNode {
-	var pt ListNode
-	p := &pt
-	for i := range arr {
-		p.Next = &ListNode{Val: arr[i]}
-		p = p.Next
-	}
-	return pt.Next
-}
-
-func Print(arr []int) {
-	l := sortList(makeList(arr))
-	for l != nil {
-		fmt.Print(l.Val, ",")
-		l = l.Next
-	}
-	fmt.Println()
+func testOne(in string) {
+	l := helper.ParseList(in)
+	l = sortList(l)
+	helper.Log(l.Dump())
 }
 
 func main() {
-	Print([]int{4, 2, 1, 3})
+	testOne("[4,2,1,3]")
 }

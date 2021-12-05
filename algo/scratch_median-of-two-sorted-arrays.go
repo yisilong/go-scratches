@@ -1,36 +1,12 @@
 package main
 
 import (
-    "fmt"
+    "leetcode/helper"
 )
 
 // 寻找两个正序数组的中位数
 const IntMax = int(^uint(0) >> 1)
 const IntMin = ^IntMax
-
-func min(num1, num2 int) int {
-    if num1 < num2 {
-        return num1
-    } else {
-        return num2
-    }
-}
-
-func max(num1, num2 int) int {
-    if num1 > num2 {
-        return num1
-    } else {
-        return num2
-    }
-}
-
-func IfElse(b bool, one, two int) int {
-    if b {
-        return one
-    } else {
-        return two
-    }
-}
 
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
     l1, l2 := len(nums1), len(nums2)
@@ -61,10 +37,12 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
     return num / 2.0
 }
 
-func Print(num1 []int, num2 []int) {
-    fmt.Println(findMedianSortedArrays(num1, num2))
+func _testOne(in1, in2 string) {
+    num1 := helper.ParseArray(in1)
+    num2 := helper.ParseArray(in2)
+    helper.Log(findMedianSortedArrays(num1, num2))
 }
 
 func main() {
-    Print([]int{1, 2}, []int{3, 4})
+    _testOne("[1,2]", "{[3,4]")
 }
