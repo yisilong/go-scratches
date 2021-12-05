@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "likebeta/leetcode/helper"
+    "leetcode/helper"
 )
 
 func maxBST(root *TreeNode) *TreeNode {

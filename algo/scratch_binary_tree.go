@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    "likebeta/leetcode/helper"
+    "leetcode/helper"
 )
 
 // 二叉树前序遍历
