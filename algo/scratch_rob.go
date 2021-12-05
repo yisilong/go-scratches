@@ -4,18 +4,11 @@ import (
     "fmt"
 )
 
-func max(a int, b int) int {
-    if a > b {
-        return a
-    } else {
-        return b
-    }
-}
-
 // 打家劫舍
 
+// 198.打家劫舍（简单）
 /*
-   不能偷相邻房间
+  不能偷相邻房间
 */
 func rob1(nums []int) int {
     N := len(nums)
@@ -37,6 +30,7 @@ func rob1V2(nums []int) int {
     return dpI
 }
 
+// 213.打家劫舍II（中等）
 /*
   不能偷相邻房间, 并且房子首尾相连
   首尾房间不能同时被抢，那么只可能有三种不同情况：要么都不被抢；要么第一间房子被抢最后一间不抢；要么最后一间房子被抢第一间不抢
@@ -51,6 +45,14 @@ func rob2(nums []int) int {
     }
 
     return max(rob1V2(nums[:N-1]), rob1V2(nums[1:]))
+}
+
+// 337.打家劫舍III（中等）
+/*
+  打劫二叉树
+*/
+func rob3(nums []int) {
+
 }
 
 func main() {

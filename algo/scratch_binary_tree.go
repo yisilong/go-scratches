@@ -2,29 +2,26 @@ package main
 
 import (
     "fmt"
-    "local/gds"
+    "likebeta/leetcode/helper"
 )
 
-type Node = gds.TreeNode
-type Stack = gds.Stack
-
 // 二叉树前序遍历
-func preOrderVisit(head *Node) {
+func preOrderVisit(head *TreeNode) {
     if head != nil {
-        fmt.Printf("%d ", head.Value)
+        fmt.Printf("%d ", head.Val)
         preOrderVisit(head.Left)
         preOrderVisit(head.Right)
     }
 }
 
-func preOrderWithStack(head *Node) {
+func preOrderWithStack(head *TreeNode) {
     if head != nil {
         var s Stack
         s.Push(head)
-        var curr *Node
+        var curr *TreeNode
         for !s.Empty() {
-            curr = s.Pop().(*Node)
-            fmt.Printf("%d ", curr.Value)
+            curr = s.Pop().(*TreeNode)
+            fmt.Printf("%d ", curr.Val)
             if curr.Right != nil {
                 s.Push(curr.Right)
             }
@@ -36,15 +33,15 @@ func preOrderWithStack(head *Node) {
 }
 
 // 二叉树中序遍历
-func inOrderVisit(head *Node) {
+func inOrderVisit(head *TreeNode) {
     if head != nil {
         inOrderVisit(head.Left)
-        fmt.Printf("%d ", head.Value)
+        fmt.Printf("%d ", head.Val)
         inOrderVisit(head.Right)
     }
 }
 
-func inOrderWithStack1(head *Node) {
+func inOrderWithStack1(head *TreeNode) {
     if head != nil {
         var s Stack
         curr := head
@@ -53,8 +50,8 @@ func inOrderWithStack1(head *Node) {
                 s.Push(curr)
                 curr = curr.Left
             } else {
-                curr = s.Pop().(*Node)
-                fmt.Printf("%d ", curr.Value)
+                curr = s.Pop().(*TreeNode)
+                fmt.Printf("%d ", curr.Val)
                 curr = curr.Right
             }
         }
@@ -62,39 +59,39 @@ func inOrderWithStack1(head *Node) {
 }
 
 // 二叉树后序遍历
-func postOrderVisit(head *Node) {
+func postOrderVisit(head *TreeNode) {
     if head != nil {
         postOrderVisit(head.Left)
         postOrderVisit(head.Right)
-        fmt.Printf("%d ", head.Value)
+        fmt.Printf("%d ", head.Val)
     }
 }
 
-func postOrderWithStack1(head *Node) {
+func postOrderWithStack1(head *TreeNode) {
     if head != nil {
         var s Stack
         s.Push(head)
-        var curr, pre *Node
+        var curr, pre *TreeNode
         for !s.Empty() {
-            curr = s.Peek().(*Node)
+            curr = s.Peek().(*TreeNode)
             if curr.Left != nil && pre != curr.Left && pre != curr.Right {
                 s.Push(curr.Left)
             } else if curr.Right != nil && pre != curr.Right {
                 s.Push(curr.Right)
             } else {
-                fmt.Printf("%d ", curr.Value)
-                pre = s.Pop().(*Node)
+                fmt.Printf("%d ", curr.Val)
+                pre = s.Pop().(*TreeNode)
             }
         }
     }
 }
 
-func postOrderWithStack2(head *Node) {
+func postOrderWithStack2(head *TreeNode) {
     if head != nil {
         var s1, s2 Stack
         s1.Push(head)
         for !s1.Empty() {
-            curr := s1.Pop().(*Node)
+            curr := s1.Pop().(*TreeNode)
             s2.Push(curr)
             if curr.Left != nil {
                 s1.Push(curr.Left)
@@ -104,37 +101,34 @@ func postOrderWithStack2(head *Node) {
             }
         }
         for !s2.Empty() {
-            fmt.Printf("%d ", s2.Pop().(*Node).Value)
+            fmt.Printf("%d ", s2.Pop().(*TreeNode).Val)
         }
     }
 }
 
 func main() {
-    arr := []int{5, 2, 1, 4, 3, 6, 7}
-    // rand.Shuffle(len(arr), func(i, j int) {
-    //     arr[i], arr[j] = arr[j], arr[i]
-    // })
+    arr := "[5,2,1,4,3,6,7]"
     fmt.Println(arr)
-    t := gds.NewTree(arr)
+    t := helper.ParseTree(arr)
     fmt.Println(t)
 
     fmt.Println("前序")
-    preOrderVisit(t.Root)
+    preOrderVisit(t)
     fmt.Println()
-    preOrderWithStack(t.Root)
+    preOrderWithStack(t)
     fmt.Println()
 
     fmt.Println("中序")
-    inOrderVisit(t.Root)
+    inOrderVisit(t)
     fmt.Println()
-    inOrderWithStack1(t.Root)
+    inOrderWithStack1(t)
     fmt.Println()
 
     fmt.Println("后序")
-    postOrderVisit(t.Root)
+    postOrderVisit(t)
     fmt.Println()
-    postOrderWithStack1(t.Root)
+    postOrderWithStack1(t)
     fmt.Println()
-    postOrderWithStack2(t.Root)
+    postOrderWithStack2(t)
     fmt.Println()
 }

@@ -2,42 +2,40 @@ package main
 
 import (
     "fmt"
-    "local/leetcode"
+    "likebeta/leetcode/helper"
 )
-
-type TreeNode = leetcode.TreeNode
 
 func maxBST(root *TreeNode) *TreeNode {
     if root == nil {
         return root
     }
-    node, _1, _2, _3 := helper(root)
+    node, _1, _2, _3 := helper_(root)
     fmt.Println(_1, _2, _3)
     return node
 }
 
-func helper(root *TreeNode) (*TreeNode, int, int, int) {
+func helper_(root *TreeNode) (*TreeNode, int, int, int) {
     if root.Left == nil && root.Right == nil {
         return root, 1, root.Val, root.Val
     }
 
     if root.Left == nil {
-        rNode, rSize, rMin, rMax := helper(root.Right)
+        rNode, rSize, rMin, rMax := helper_(root.Right)
         if rNode == root.Right && rMin > root.Val {
             return root, rSize + 1, root.Val, rMax
         } else {
             return rNode, rSize, rMin, rMax
         }
     } else if root.Right == nil {
-        lNode, lSize, lMin, lMax := helper(root.Left)
+        lNode, lSize, lMin, lMax := helper_(root.Left)
         if lNode == root.Left && lMax < root.Val {
             return root, lSize + 1, lMin, root.Val
         } else {
             return lNode, lSize, lMin, lMax
         }
     }
-    lNode, lSize, lMin, lMax := helper(root.Left)
-    rNode, rSize, rMin, rMax := helper(root.Right)
+    lNode, lSize, lMin, lMax := helper_(root.Left)
+    rNode, rSize, rMin, rMax := helper_(root.Right)
     if lNode == root.Left && rNode == root.Right && lMax < root.Val && rMin > root.Val {
         return root, lSize + rSize + 1, lMin, rMax
     }
@@ -61,7 +59,7 @@ func maxBstTopo(root *TreeNode) int {
     return postOrder(root, cache)
 }
 
-func max(a, b, c int) int {
+func max3(a, b, c int) int {
     if a < b {
         a = b
     }
@@ -89,7 +87,7 @@ func postOrder(root *TreeNode, cache ShareMap) int {
     // }
     l, r := lMax-lCut, rMax-rCut
     cache[root] = &Share{Left: l, Right: r}
-    return max(l+r+1, lMax, rMax)
+    return max3(l+r+1, lMax, rMax)
 }
 
 func modifyCache(root *TreeNode, v int, cache ShareMap, lr bool) int {
@@ -115,13 +113,13 @@ func modifyCache(root *TreeNode, v int, cache ShareMap, lr bool) int {
 }
 
 func main() {
-    t1 := leetcode.NewTree("[6,1,12,0,3,10,13,null,null,null,null,4,14,20,16,2,5,11,15]")
-    leetcode.PrintTree(t1, 8)
+    t1 := helper.ParseTree("[6,1,12,0,3,10,13,null,null,null,null,4,14,20,16,2,5,11,15]")
+    helper.PrintTree(t1, 8)
     node1 := maxBST(t1)
-    leetcode.PrintTree(node1, 8)
+    helper.PrintTree(node1, 8)
 
-    t2 := leetcode.NewTree("[6,1,12,0,3,10,13,null,null,null,null,4,14,20,16,2,5,11,15]")
-    leetcode.PrintTree(t2, 8)
+    t2 := helper.ParseTree("[6,1,12,0,3,10,13,null,null,null,null,4,14,20,16,2,5,11,15]")
+    helper.PrintTree(t2, 8)
     num := maxBstTopo(t2)
     fmt.Println(num)
 }

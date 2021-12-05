@@ -2,10 +2,8 @@ package main
 
 import (
     "fmt"
-    "local/gds"
+    "likebeta/leetcode/helper"
 )
-
-type TreeNode = gds.TreeNode
 
 /*
    Morris 序
@@ -21,7 +19,7 @@ func Morris(head *TreeNode) {
     fmt.Println("Morris visited")
     curr := head
     for curr != nil {
-        fmt.Printf("%v ", curr.Value)
+        fmt.Printf("%v ", curr.Val)
         if curr.Left == nil {
             curr = curr.Right
             continue
@@ -46,7 +44,7 @@ func PreOrderMorris(head *TreeNode) {
     curr := head
     for curr != nil {
         if curr.Left == nil {
-            fmt.Printf("%v ", curr.Value)
+            fmt.Printf("%v ", curr.Val)
             curr = curr.Right
             continue
         }
@@ -58,7 +56,7 @@ func PreOrderMorris(head *TreeNode) {
             leftMostRight.Right = nil
             curr = curr.Right
         } else {
-            fmt.Printf("%v ", curr.Value)
+            fmt.Printf("%v ", curr.Val)
             leftMostRight.Right = curr
             curr = curr.Left
         }
@@ -71,7 +69,7 @@ func InOrderMorris(head *TreeNode) {
     curr := head
     for curr != nil {
         if curr.Left == nil {
-            fmt.Printf("%v ", curr.Value)
+            fmt.Printf("%v ", curr.Val)
             curr = curr.Right
             continue
         }
@@ -80,7 +78,7 @@ func InOrderMorris(head *TreeNode) {
             leftMostRight = leftMostRight.Right
         }
         if leftMostRight.Right == curr {
-            fmt.Printf("%v ", curr.Value)
+            fmt.Printf("%v ", curr.Val)
             leftMostRight.Right = nil
             curr = curr.Right
         } else {
@@ -98,10 +96,9 @@ func PostOrderMorris(head *TreeNode) {
 }
 
 func main() {
-    arr := []int{16, 3, 7, 11, 9, 26, 18, 14, 15}
-    t := gds.NewTree(arr)
+    t := helper.NewTree("[16,3,7,11,9,26,18,14,15]]")
     fmt.Println(t)
-    Morris(t.Root)
-    PreOrderMorris(t.Root)
-    InOrderMorris(t.Root)
+    Morris(t)
+    PreOrderMorris(t)
+    InOrderMorris(t)
 }

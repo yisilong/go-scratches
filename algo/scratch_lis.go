@@ -4,14 +4,6 @@ import (
     "fmt"
 )
 
-func max(a, b int) int {
-    if a > b {
-        return a
-    } else {
-        return b
-    }
-}
-
 // 最长递增子序列
 func longestLIS(arr []int) int {
     length := len(arr)

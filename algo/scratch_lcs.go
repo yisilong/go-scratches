@@ -47,7 +47,7 @@ func lcs2(text1 string, text2 string) int {
         prev := dp[0]
         for j := 1; j <= l2; j++ {
             if text1[i-1] == text2[j-1] {
-                dp[j], prev = prev + 1, dp[j]
+                dp[j], prev = prev+1, dp[j]
             } else {
                 prev = dp[j]
                 if dp[j] < dp[j-1] {

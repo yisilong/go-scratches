@@ -51,5 +51,5 @@ func stoneGame(piles []int) int {
 
 func main() {
     fmt.Println(stoneGame([]int{1, 100, 3}))
-    fmt.Println(stoneGame([]int{5,3,4,5}))
+    fmt.Println(stoneGame([]int{5, 3, 4, 5}))
 }

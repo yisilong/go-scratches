@@ -13,14 +13,6 @@ import (
    dp[n][k].full  = max(dp[n-1][k].full, dp[n-1][k-1].empty - prices[n]) // 昨天也满仓/昨天空仓&&今天买入
 */
 
-func max(a int, b int) int {
-    if a > b {
-        return a
-    } else {
-        return b
-    }
-}
-
 type Equities struct {
     Empty int
     Full  int
