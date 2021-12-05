@@ -1,8 +1,8 @@
 package main
 
 import (
-    "likebeta/gds/stack"
-    "likebeta/leetcode/helper"
+    "gds/stack"
+    "leetcode/helper"
 )
 
 type TreeNode = helper.TreeNode

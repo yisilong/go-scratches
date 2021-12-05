@@ -1,13 +1,13 @@
 module go-scratches
 
 require (
-	"likebeta/gds" v0.0.0
-	"likebeta/leetcode" v0.0.0
+	"gds" v0.0.0
+	"leetcode" v0.0.0
 )
 
 replace (
-	"likebeta/gds" => "../gds"
-	"likebeta/leetcode" => "../leetcode"
+	gds => ../gds
+	leetcode => ../leetcode
 )
 
 go 1.17
